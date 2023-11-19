@@ -4,7 +4,7 @@ import bcrypt from "bcrypt";
 const saltRounds = 10; // Affects the performance and password security level
 
 const questionPaperSchema = new mongoose.Schema({
-    encryptedQuestion: {
+    Question: {
       type: String,
       required: true,
     },
@@ -26,8 +26,8 @@ const questionPaperSchema = new mongoose.Schema({
     },
   });
   questionPaperSchema.pre('save', async function (next) {
-    if (this.isModified('encryptedQuestion')) {
-      this.encryptedQuestion = await bcrypt.hash(this.encryptedQuestion, saltRounds);
+    if (this.isModified('Question')) {
+      this.Question = await bcrypt.hash(this.Question, saltRounds);
     }
     next();
   });
