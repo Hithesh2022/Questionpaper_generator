@@ -9,7 +9,7 @@ async function mongoConnect() {
     await mongoose.connect(process.env.DB_URL);
     console.log("Connected to DB");
   } catch (err) {
-    console.error(err);
+    console.error("Error connecting to DB:", err.message);
   }
 }
 
